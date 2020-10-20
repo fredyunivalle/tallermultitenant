@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block miga_pan %}
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Tenants</a>
+    <li class="active">Mostrar clientes tenants</li>
+{% endblock miga_pan %}
+
+{% block titulo_pagina %}
+    Mostrar clientes tenants
+{% endblock titulo_pagina %}
+
+{% block titulo %}
+    Mostrar clientes tenants
+{% endblock titulo %}
+
+
+{% block contenido %}
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Listado de clientes entidades</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        {% for tenant in datos  %}
+                            <h2>{{ tenant.nombre_tenant }}</h2>
+                            <ul>
+                                {% for cliente in tenant.clientes_tenant %}
+                                    <li>{{ cliente.nombre }} ({{ cliente.telefono }})</li>
+                                {% endfor %}
+                            </ul>
+
+                            <br/>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock contenido %}
